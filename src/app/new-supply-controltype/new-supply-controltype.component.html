@@ -1,0 +1,21 @@
+<form (ngSubmit)="submit()">
+    <h1>WTF is this?</h1>
+    <mat-form-field>
+        <mat-label>Default ID*:</mat-label>
+        <input [(ngModel)]="id" name="id" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Part Number*:</mat-label>
+        <mat-select>
+        <mat-option value="PENDING">Get from API</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Control Type*:</mat-label>
+        <mat-select>
+        <mat-option value="PENDING">Get from API</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>

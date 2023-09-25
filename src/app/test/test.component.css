@@ -1,0 +1,40 @@
+.icon{
+    text-align: center; /* Center-align text */
+    width: 100%; 
+    color: black; 
+}
+  
+.icon:hover {
+    background-color: lightgray; /* Add a hover color */
+}
+  
+.btn {
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: transparent;
+    float: left; 
+    text-align: center; /* Center-align text */
+    width: 2%; 
+    margin-left: 5px;
+    padding: 3px 0; 
+    transition: all 0.3s ease; 
+    font-size: 13px; /* Increased font size */
+}
+
+/* CSS so that we can select DIV's. Do this by using radio btn */
+.labl {
+    display : block;
+    width: 400px;
+}
+.labl > input{ /* HIDE RADIO */
+    visibility: hidden; /* Makes input not-clickable */
+    position: absolute; /* Remove input from document flow */
+}
+.labl > input + div{ /* DIV STYLES */
+    cursor:pointer;
+    border:2px solid transparent;
+}
+.labl > input:checked + div{ /* (RADIO CHECKED) DIV STYLES */
+    background-color: #ffd6bb;
+    border: 1px solid #ff6600;
+}

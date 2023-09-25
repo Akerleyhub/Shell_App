@@ -1,0 +1,16 @@
+<form (ngSubmit)="submit()">
+    <mat-form-field>
+        <mat-label>Method ID*:</mat-label>
+        <input [(ngModel)]="id" name="id" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Name*:</mat-label>
+        <input [(ngModel)]="name" name="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Concept ID:</mat-label>
+        <input [(ngModel)]="concept" name="concept" matInput>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>

@@ -1,0 +1,139 @@
+<!-- Different cards depending on what it is -->
+<!-- TEST GROUP -->
+<mat-card *ngIf="chosenTest().type === 'TESTGROUP' ">
+    <mat-card-header>{{chosenTest().name}}</mat-card-header>
+    <mat-card-content>{{chosenTest().test_id}}</mat-card-content>
+    <mat-card-content>{{chosenTest().description}}</mat-card-content>
+    <mat-card-actions>
+        <button>Edit</button>
+    </mat-card-actions>
+    <div class="row"
+            *ngIf="chosenTest().children">
+        <div>Mneumonics:</div>
+        <div>
+            <ul>
+            <li
+                *ngFor="let child of chosenTest().children">{{child['name']}}</li>
+            </ul>
+        </div>
+    </div>
+</mat-card>
+
+<!-- TEST -->
+<mat-card *ngIf="chosenTest().type === 'TEST' ">
+    <mat-card-header>{{chosenTest().name}}</mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="updateTest()">
+            <mat-form-field>
+                <mat-label>Test ID*:</mat-label>
+                <input [(ngModel)]="testFormData.test_id" name="test_id"  matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Status*:</mat-label>
+                <mat-select [(value)]="selected" placeholder="Status">
+                <mat-option [value]="">None</mat-option>
+                <mat-option *ngFor="let status of statuses" [value]="status">{{status}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Name*:</mat-label>
+                <input [(ngModel)]="testFormData.name" name="name"  matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description*:</mat-label>
+                <input [(ngModel)]="testFormData.description" name="description"  matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Cost:</mat-label>
+                <input [(ngModel)]="testFormData.cost" name="cost" value="{{chosenTest().cost}}" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Replicate Cost:</mat-label>
+                <input [(ngModel)]="testFormData.rcost" name="rcost" value="{{chosenTest().replica_cost}" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Analyte:</mat-label>
+                <mat-select>
+                <mat-option value="pending">Populate from API call</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Catagories*:</mat-label>
+                <mat-select [(value)]="cselected" placeholder="Catagory">
+                <mat-option [value]="">None</mat-option>
+                <mat-option *ngFor="let catagory of catagories" [value]="catagory">{{catagory}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Test</mat-label>
+                <input [(ngModel)]="testFormData.test" name="test" matInput value="{{chosenTest().test_num}}" type="number">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Replicate</mat-label>
+                <input [(ngModel)]="testFormData.replicate" name="replicate" matInput value="{{chosenTest().replicate}}" type="number">
+            </mat-form-field>
+            <section class="example-section">
+                <mat-checkbox name="finalReport" [(ngModel)]="testFormData.finalReport" (change)="checkCheckBoxvalue($event)" value="{{chosenTest().final_report}}" color='primary' class="example-margin">Required for final report*</mat-checkbox>
+            </section>
+        
+            <mat-form-field>
+                <mat-label>Report Test Group:</mat-label>
+                <mat-select>
+                <mat-option value="pending">Populate from API call</mat-option>
+                <mat-option value="final">Final Approval</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <section class="example-section">
+                <mat-checkbox name="addReplicate" [(ngModel)]="testFormData.addReplicate" (change)="checkCheckBoxvalue($event)" color='primary' class="example-margin">Add Replicates*</mat-checkbox>
+            </section>
+            <section class="example-section">
+                <mat-checkbox name="tg" [(ngModel)]="testFormData.tg" (change)="checkCheckBoxvalue($event)" color='primary' class="example-margin">Reassociate Test Group*</mat-checkbox>
+            </section>
+            <mat-form-field>
+                <mat-label>Test Instrument:</mat-label>
+                <mat-select>
+                <mat-option value="INSTRUMENT">Populate from API call</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Method:</mat-label>
+                <mat-select>
+                <mat-option value="METHOD">Populate from API call</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Worksheet:</mat-label>
+                <mat-select [(value)]="wselected" placeholder="Catagory">
+                <mat-option [value]="">None</mat-option>
+                <mat-option *ngFor="let worksheet of worksheets" [value]="worksheet">{{worksheet}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Test Counts:</mat-label>
+                <mat-select [(value)]="tcselected" placeholder="Catagory">
+                <mat-option [value]="">None</mat-option>
+                <mat-option *ngFor="let testCount of testCounts" [value]="testCount">{{testCount}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        
+            <button #saveBtn id="saveBtn" mat-raised-button color="primary" type="submit">Save</button>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button>Edit</button>
+    </mat-card-actions>
+    <div class="row"
+            *ngIf="chosenTest().children">
+        <div>Mneumonics:</div>
+        <div>
+            <ul>
+            <li
+                *ngFor="let child of chosenTest().children">{{child['name']}}</li>
+            </ul>
+        </div>
+    </div>
+</mat-card>
+<!-- MNEUMONIC -->
+<mat-card *ngIf="chosenTest().type === 'MNEUMONIC' ">
+    <app-new-test />
+</mat-card>

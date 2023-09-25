@@ -1,0 +1,46 @@
+<form (ngSubmit)="submit()">
+    <mat-form-field>
+        <mat-label>Analyte ID:</mat-label>
+        <input [(ngModel)]="id" name="id" matInput disabled>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Status*:</mat-label>
+        <mat-select [(value)]="selected" placeholder="Status">
+        <mat-option [value]="">None</mat-option>
+        <mat-option *ngFor="let status of statuses" [value]="status.status_type_id">{{status.description}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Name*:</mat-label>
+        <input [(ngModel)]="name" name="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Clinical Significance:</mat-label>
+        <input [(ngModel)]="significance" name="significance" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Concept ID:</mat-label>
+        <input [(ngModel)]="conceptID" name="conceptID" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Keywords:</mat-label>
+        <input [(ngModel)]="keywords" name="keywords" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Synonyms:</mat-label>
+        <input [(ngModel)]="synonyms" name="synonyms" matInput>
+    </mat-form-field>
+    <p>Analyte Avilable For Use by the Division:</p>
+    <section class="example-section">
+        <mat-checkbox color='primary' name="infect" [(ngModel)]="infect" (change)="checkCheckBoxvalue($event)" class="example-margin">Div. of Infectious Disease:</mat-checkbox>
+    </section>
+    <section class="example-section">
+        <mat-checkbox color='primary' name="environ" [(ngModel)]="environ" (change)="checkCheckBoxvalue($event)" class="example-margin">Div of Environmental Sciences:</mat-checkbox>
+    </section>
+    <mat-form-field>
+        <mat-label>ELAP Analyte ID:</mat-label>
+        <input [(ngModel)]="ELAP" name="ELAP" matInput>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>

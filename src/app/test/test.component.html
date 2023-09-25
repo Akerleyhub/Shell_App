@@ -1,0 +1,58 @@
+<app-icon-bar />
+<!-- Choose LAB -->
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Lab:</mat-label>
+    <mat-select (selectionChange)="onSelectOption($event)" name="option">
+        <mat-option *ngFor="let option of labs" [value]="option">{{ option }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p><b>Selected option: {{ currLab }}</b></p> 
+</div>
+
+<input type="text" placeholder="Filter by test" #filter>
+<button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
+
+<mat-form-field>
+  <mat-label>Sort Tests:</mat-label>
+  <mat-select (change)="sortTests($event)" [(value)]="sortSelect" placeholder="Catagory">
+  <mat-option [value]="">None</mat-option>
+  <mat-option *ngFor="let sortBy of sortBys" [value]="sortBy.sort_id">{{sortBy.description}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+      <!-- use a disabled button to provide padding for tree leaf -->
+      <button mat-icon-button disabled></button>
+          <label class="labl">
+            <input type="radio" name="radioname" value="one_value" />
+            <div (click)="testSelected(node.name)">{{node.name}} </div>
+            </label>
+        <button class="btn" (click)="moveUp()"><i class="fa-solid fa-up-long icon"></i></button> 
+        <button class="btn" (click)="moveDown()"><i class="fa-solid fa-down-long icon"></i></button>
+        <button class="btn"><i class="fa-solid fa-pen-to-square icon"></i></button>
+        <button name="delete" (click)="deleteSelectedTest()"><i class="fa-solid fa-trash-can"></i></button>
+    </mat-tree-node>
+    <!-- This is the tree node template for expandable nodes -->
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+      <button mat-icon-button matTreeNodeToggle
+              [attr.aria-label]="'Toggle ' + node.name">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}} 
+        </mat-icon>
+      </button>
+      <label class="labl">
+        <input type="radio" name="radioname" value="one_value" />
+        <!-- <div (click)="testSelected(node.name)" *ngIf="foundTest === node.name">{{node.name}} </div> -->
+        <div *ngIf="foundTest.includes(node.name);then content else other_content">Here is ignored</div>
+        <ng-template #content><div (click)="testSelected(node.name)"><span style="background-color: #FFFF00">{{node.name}}</span></div></ng-template>
+        <ng-template #other_content><div (click)="testSelected(node.name)">{{node.name}}</div></ng-template>
+      </label>
+    </mat-tree-node>
+</mat-tree>
+
+<div *ngIf="chosenTest()">
+  <app-test-view />
+</div>

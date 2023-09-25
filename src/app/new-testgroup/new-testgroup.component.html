@@ -1,0 +1,82 @@
+<form>
+    <mat-form-field>
+        <mat-label>Test Group ID:</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Status*:</mat-label>
+        <mat-select>
+        <mat-option value="PENDING">Pending Approval(default)</mat-option>
+        <mat-option value="FINAL">Final Approval</mat-option>
+        <mat-option value="READY">Ready to Migrate</mat-option>
+        <mat-option value="MIGRATED">Migrated to Production</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Name*:</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description*:</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cost:</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Analyte:</mat-label>
+        <mat-select>
+        <mat-option value="pending">Populate from API call</mat-option>
+        <mat-option value="final">Final Approval</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>LOINC Number:</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <section class="example-section">
+        <mat-checkbox color='primary' class="example-margin">Required for final report*</mat-checkbox>
+    </section>
+    <section class="example-section">
+        <mat-checkbox color='primary' class="example-margin">Allow tests to be added*</mat-checkbox>
+    </section>
+    <section class="example-section">
+        <mat-checkbox color='primary' class="example-margin">Used for accessioning*</mat-checkbox>
+    </section>
+    <section class="example-section">
+        <mat-checkbox color='primary' class="example-margin">RHold specimens at accessioning*</mat-checkbox>
+    </section>
+    <mat-form-field>
+        <mat-label>Associate with Test Group:</mat-label>
+        <mat-select>
+        <mat-option value="pending">Populate from API call</mat-option>
+        <mat-option value="final">Final Approval</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>LOINC Number:</mat-label>
+        <input type="number" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Test Group Sequence:</mat-label>
+        <input matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Worksheet:</mat-label>
+        <mat-select>
+        <mat-option value="SPREADSHEET">Spreadsheet</mat-option>
+        <mat-option value="FORM">Form</mat-option>
+        <mat-option value="SEROLOGY">Serology</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Column Order:</mat-label>
+        <mat-select>
+        <mat-option value="TOP">Top Down</mat-option>
+        <mat-option value="BOTTOM">Bottom Up</mat-option>
+        <mat-option value="ALL">All repl 1 interps</mat-option>
+        </mat-select>
+    </mat-form-field>
+</form>
+

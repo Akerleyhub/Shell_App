@@ -1,0 +1,25 @@
+a {
+    color: white;
+    margin:25px;
+}
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+.left-container,
+.right-container {
+  display: flex;
+  align-items: center;
+}
+.right-container {
+  justify-content: flex-end;
+}
+
+.logo-img {
+    width: 80px; /* Adjust the width as needed */
+    height: auto; /* Preserve aspect ratio */
+    margin-right: 10px; /* Add some spacing between the logo and title */
+}
+.title {
+    margin-right: 10px; /* Add spacing between the title and the link on the right */
+}

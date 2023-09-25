@@ -1,0 +1,26 @@
+<form (ngSubmit)="submit()">
+    <mat-form-field>
+        <mat-label>Part Number*:</mat-label>
+        <input [(ngModel)]="partNum" name="partNum" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Name*:</mat-label>
+        <input [(ngModel)]="name" name="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description:</mat-label>
+        <input [(ngModel)]="description" name="description" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Test ID:</mat-label>
+        <mat-select>
+        <mat-option value="pending">Populate from API call</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Number of Tests*:</mat-label>
+        <input [(ngModel)]="numOfTests" name="numOfTests" matInput type="number" value="0">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>

@@ -1,0 +1,95 @@
+<form (ngSubmit)="submit()">
+    <mat-form-field>
+        <mat-label>Test ID*:</mat-label>
+        <input [(ngModel)]="id" name="id" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Status*:</mat-label>
+        <mat-select [(value)]="selected" placeholder="Status">
+        <mat-option [value]="">None</mat-option>
+        <mat-option *ngFor="let status of statuses" [value]="status.status_type_id">{{status.description}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Name*:</mat-label>
+        <input [(ngModel)]="name" name="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description*:</mat-label>
+        <input [(ngModel)]="description" name="description" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Cost:</mat-label>
+        <input [(ngModel)]="cost" name="cost" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Replicate Cost:</mat-label>
+        <input [(ngModel)]="rcost" name="rcost" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Analyte:</mat-label>
+        <mat-select>
+        <mat-option value="pending">Populate from API call</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Catagories*:</mat-label>
+        <mat-select [(value)]="cselected" placeholder="Catagory">
+        <mat-option [value]="">None</mat-option>
+        <mat-option *ngFor="let catagory of catagories" [value]="catagory.catagory_id">{{catagory.description}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Test</mat-label>
+        <input [(ngModel)]="test" name="test" matInput type="number">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Replicate</mat-label>
+        <input [(ngModel)]="replicate" name="replicate" matInput type="number">
+    </mat-form-field>
+    <section class="example-section">
+        <mat-checkbox name="finalReport" [(ngModel)]="finalReport" (change)="checkCheckBoxvalue($event)" color='primary' class="example-margin">Required for final report*</mat-checkbox>
+    </section>
+
+    <mat-form-field>
+        <mat-label>Report Test Group:</mat-label>
+        <mat-select>
+        <mat-option value="pending">Populate from API call</mat-option>
+        <mat-option value="final">Final Approval</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <section class="example-section">
+        <mat-checkbox name="addReplicate" [(ngModel)]="addReplicate" (change)="checkCheckBoxvalue($event)" color='primary' class="example-margin">Add Replicates*</mat-checkbox>
+    </section>
+    <section class="example-section">
+        <mat-checkbox name="tg" [(ngModel)]="tg" (change)="checkCheckBoxvalue($event)" color='primary' class="example-margin">Reassociate Test Group*</mat-checkbox>
+    </section>
+    <mat-form-field>
+        <mat-label>Test Instrument:</mat-label>
+        <mat-select>
+        <mat-option value="INSTRUMENT">Populate from API call</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Method:</mat-label>
+        <mat-select>
+        <mat-option value="METHOD">Populate from API call</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Worksheet:</mat-label>
+        <mat-select [(value)]="wselected" placeholder="Catagory">
+        <mat-option [value]="">None</mat-option>
+        <mat-option *ngFor="let worksheet of worksheets" [value]="worksheet.worksheet_id">{{worksheet.description}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Test Counts:</mat-label>
+        <mat-select [(value)]="tcselected" placeholder="Catagory">
+        <mat-option [value]="">None</mat-option>
+        <mat-option *ngFor="let testCount of testCounts" [value]="testCount.testCount_id">{{testCount.description}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>

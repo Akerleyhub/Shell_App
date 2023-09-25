@@ -1,0 +1,16 @@
+<form (ngSubmit)="submit()">
+    <mat-form-field>
+        <mat-label>Control Type*:</mat-label>
+        <input [(ngModel)]="controlType" name="controlType" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Name*:</mat-label>
+        <input [(ngModel)]="name" name="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description:</mat-label>
+        <input [(ngModel)]="description" name="description" matInput>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>

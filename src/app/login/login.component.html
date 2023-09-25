@@ -1,0 +1,35 @@
+<div>
+    <div class="login-container">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form (submit)="onSubmit()">
+                <mat-form-field appearance="fill">
+                    <mat-label>Database:</mat-label>
+                    <mat-select [(ngModel)]="selectedDatabase" name="db" required>
+                        <mat-option *ngFor="let db of databases" [value]="db">{{ db }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Schema:</mat-label>
+                    <mat-select [(ngModel)]="selectedSchema" name="schema" required>
+                      <mat-option *ngFor="let schema of schemas" [value]="schema">{{ schema }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput type="text" [(ngModel)]="username" name="username" required>
+              </mat-form-field>
+      
+              <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" [(ngModel)]="password" name="password" required>
+              </mat-form-field>
+      
+              <button mat-raised-button color="primary" type="submit">Login</button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+</div>

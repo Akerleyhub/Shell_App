@@ -1,0 +1,75 @@
+{
+    "data" : [
+        {
+            "name": "Whole genome sequencing",
+            "test_id":"WGS_SEQ",
+            "description":"Whole genome sequencing",
+            "type":"TEST",
+            "status":"PENDING",
+            "cost":null,
+            "analyte":"zugma",
+            "catagory":"AIR",
+            "final_report":true,
+            "test_num":2,
+            "replicate":1,
+            "replica_cost":null,
+            "replica_status":false,
+            "test_count":"NOCOUNT",
+            "worksheet":"SPREADSHEET",
+            "entry_datetime":"10/12/2023 00:00:00",
+            "children": [{ "name": "WGS", "type":"MNEUMONIC" }, { "name": "NGS", "type":"MNEUMONIC" }, { "name": "TNGS", "type":"MNEUMONIC" }]
+        },
+        {
+            "name": "Cryptosporidium",
+            "test_id":"CRYPT",
+            "description":"Cryptosporidium",
+            "type":"TEST",
+            "entry_datetime":"10/05/2023 00:00:00",
+            "children": [
+                {
+                    "name": "Test within a test",
+                    "type":"TEST",
+                    "children": [{ "name": "Mneumonic1", "type":"MNEUMONIC" }, { "name": "Mneumonic2", "type":"MNEUMONIC" }]
+                },
+                {
+                    "name": "Another Test within test",
+                    "type":"TEST",
+                    "children": [{ "name": "Pumpkin spice", "type":"MNEUMONIC" }, { "name": "Carrots", "type":"MNEUMONIC" }]
+                }
+            ]
+        },
+        {
+            "name": "Herpies panal",
+            "test_id":"HERP",
+            "description":"Herpies panal",
+            "type":"TEST",
+            "entry_datetime":"10/10/2003 00:00:00",
+            "children": [
+                {
+                    "name": "HERP_IFA",
+                    "children": [{ "name": "MDCK", "type":"MNEUMONIC" }, { "name": "HEL", "type":"MNEUMONIC" },{ "name": "HEPA", "type":"MNEUMONIC" }]
+                },
+                {
+                    "name": "META_DATA",
+                    "children": [{ "name": "GENERAL_CHECK", "type":"MNEUMONIC" }, { "name": "HERP", "type":"MNEUMONIC" },{ "name": "HEPA", "type":"MNEUMONIC" }]
+                }
+            ]
+        },
+        {
+            "name": "Probe",
+            "test_id":"PROBE",
+            "description":"Probe",
+            "type":"TEST",
+            "entry_datetime":"10/12/2023 12:00:00",
+            "children": [{ "name": "PROBE1", "type":"MNEUMONIC"}, { "name": "PROBE2", "type":"MNEUMONIC" }, { "name": "PROBE3", "type":"MNEUMONIC" }]
+        },
+        {
+            "name": "Spongecofficus",
+            "test_id":"SPONGE",
+            "description":"Spongecofficus",
+            "type":"TEST",
+            "entry_datetime":"05/05/2015 00:00:00",
+            "children": [{ "name": "SPONG_FORAL", "type":"MNEUMONIC" }, { "name": "LLORIUM", "type":"MNEUMONIC" }, { "name": "PESI", "type":"MNEUMONIC" },{ "name": "DOPA", "type":"MNEUMONIC" },{ "name": "CAFFI", "type":"MNEUMONIC" }]
+        }
+    ]
+}

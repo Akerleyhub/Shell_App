@@ -1,0 +1,17 @@
+
+<h1>Adding a new instrument!</h1>
+
+<form (ngSubmit)="addInstrument()">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Instrument SN: </span>
+        <input type="text" class="form-control" name="instrumentSerial" [(ngModel)]="instrumentSerial" placeholder="Serial Number" aria-label="instrumentSerial" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Instrument Name: </span>
+        <input type="text" class="form-control" name="instrumentName" [(ngModel)]="instrumentName" placeholder="Name" aria-label="instrumentName" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Instrument Name: </span>
+        <input type="text" class="form-control" name="instrumentDescription" [(ngModel)]="instrumentDescription" placeholder="Description" aria-label="instrumentDescription" aria-describedby="basic-addon1">
+    </div>
+</form>
