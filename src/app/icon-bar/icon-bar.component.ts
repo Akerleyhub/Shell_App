@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TestAPIService } from '../test-api.service';
 
 @Component({
@@ -7,25 +7,23 @@ import { TestAPIService } from '../test-api.service';
   styleUrls: ['./icon-bar.component.css']
 })
 export class IconBarComponent {
+  @Input() deleteSelectedTest: () => void;
+  //@Input() function2: () => void;
+
   constructor(
     private _testService: TestAPIService
   ) {}
 
-  chosenTest = this._testService.selectedTest;
+  callParentDelete() {
+    if (this.deleteSelectedTest) {
+      this.deleteSelectedTest();
+    }
+  }
+
+  chosenTest = this._testService.selected;
+  //treeStructure = this._testService.tree;
   clickOtherBtn(){
     // Do something, can treat this like a general
     //var div = this.elRef.nativeElement.querySelector('#saveBtn');
   }
-  deleteSelectedTest(){}
-  // deleteSelectedTest(){
-  //   try {
-  //     let test_id = this.chosenTest().test_id;
-  //     //this._testService.deleteTest({test_id});
-  //     // Test will no longer be selected after deleting it
-  //     this._testService.deleteTestState({test_id});
-  //     this.chosenTest.set(undefined);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 }

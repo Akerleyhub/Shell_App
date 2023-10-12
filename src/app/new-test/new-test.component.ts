@@ -51,6 +51,23 @@ export class NewTestComponent {
   checkCheckBoxvalue(e:any){
     e.value=!e.value;
   }
+  // Extract the json string, convert it to object and set values
+  pasteBuffer(){
+    const json = localStorage.getItem('copiedTest');
+    if(!json) return;
+    const testObj = JSON.parse(json);
+    //console.log(testObj)
+    this.id = testObj.test_id;
+    this.name =testObj.name;
+    this.description = testObj.description;
+    this.cost = testObj.cost;
+    this.rcost =testObj.rcost;
+    this.test = testObj.test;
+    this.replicate = testObj.replicate;
+    //this.finalReport= 
+    //this.addReplicate=
+    //this.tg=
+  }
   submit(){
     // Getting the value from status is an arse pain
     console.log(this.statuses[this.selected-1].description)

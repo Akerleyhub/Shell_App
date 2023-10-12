@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TestNode, ExampleFlatNode } from '../test-interface';
 import { TestAPIService } from '../test-api.service';
 import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationDialogService } from '../confirmation-dialog.service';
 import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
@@ -59,7 +61,9 @@ export class TestComponent {
   currLab: string;
   labs:string[]=['BACT','MYCOBACT','VRS','RIL','MYCOLOGY'];
   constructor(
-    private _testService: TestAPIService
+    private _testService: TestAPIService,
+    private _snackBar: MatSnackBar,
+    private confirmationDialogService: ConfirmationDialogService
   ) {
     this._testService.getAllTestsFake();
     this.currLab= localStorage.getItem('selectedLab');
@@ -75,7 +79,7 @@ export class TestComponent {
   // Subscribe to the service being used in the Service. Should return a json
   tests = this._testService.tests;
   // Signals used in the template
-  chosenTest = this._testService.selectedTest;
+  chosenTest = this._testService.selected;
   foundTest = [];
 
   sortSelect = 0;
@@ -83,13 +87,44 @@ export class TestComponent {
     {sort_id: 1, description: 'ALPHABET'},
     {sort_id: 2, description: 'DATE'}
   ];
-
+  // Sneckbar error
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000, // Duration in milliseconds
+    });
+  }
   
   // Function to handle the selection change event
   onSelectOption(event:any): void {
     const selectedOption = event.value;
     localStorage.setItem('selectedLab', selectedOption);
     this.currLab= selectedOption;
+  }
+  confirmDeleteAction(): void {
+    this.confirmationDialogService
+      .openConfirmationDialog('Confirmation', 'Are you sure you want to do this?')
+      .subscribe((confirmed) => {
+        if (confirmed) {
+          // User clicked Yes, proceed with the action
+          this.deleteSelectedTest();
+        } else {
+          console.log('NOTHING HAPPENED')
+          // User clicked No, do nothing or handle accordingly
+        }
+      });
+  }
+  confirmCutAction(): void {
+    this.confirmationDialogService
+      .openConfirmationDialog('Confirmation', 'Are you sure you want to do this?')
+      .subscribe((confirmed) => {
+        if (confirmed) {
+          // User clicked Yes, proceed with the action
+          this.cutSelectedTest();
+        } else {
+          console.log('NOTHING HAPPENED')
+          // User clicked No, do nothing or handle accordingly
+        }
+      });
   }
   testSelected(testName: string) {
     let foundTest;
@@ -118,6 +153,46 @@ export class TestComponent {
       this._testService.deleteTestState({test_id});
       this.chosenTest.set(undefined);
       this.dataSource.data = this.tests().data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  copySelectedTest(){
+    try {
+      // Recasting since chosenTest is of type Test
+      let buffer:any;
+      buffer = this.chosenTest();
+      // If there's no test selected or delete item that's already copied
+      if(!buffer){
+        this.openSnackBar('Select test or else I break', 'Dismiss');
+        return;
+      }else if(localStorage.getItem('copiedTest')){
+        localStorage.removeItem('copiedTest');
+      }
+      buffer = JSON.stringify(buffer);
+      //console.log(buffer)
+      localStorage.setItem('copiedTest', buffer);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  // Does a delete of the test and saves to localstorage
+  cutSelectedTest(){
+    try {
+      // Recasting since chosenTest is of type Test
+      let buffer:any;
+      buffer = this.chosenTest();
+      // If there's no test selected or delete item that's already copied
+      if(!buffer){
+        this.openSnackBar('Select test or else I break', 'Dismiss');
+        return;
+      }else if(localStorage.getItem('copiedTest')){
+        localStorage.removeItem('copiedTest');
+        this.deleteSelectedTest();
+      }
+      buffer = JSON.stringify(buffer);
+      //console.log(buffer)
+      localStorage.setItem('copiedTest', buffer);
     } catch (error) {
       console.log(error);
     }

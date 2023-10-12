@@ -5,7 +5,7 @@
     <mat-card-content>{{chosenTest().test_id}}</mat-card-content>
     <mat-card-content>{{chosenTest().description}}</mat-card-content>
     <mat-card-actions>
-        <button>Edit</button>
+        <button>Update</button>
     </mat-card-actions>
     <div class="row"
             *ngIf="chosenTest().children">
@@ -115,12 +115,10 @@
                 <mat-option *ngFor="let testCount of testCounts" [value]="testCount">{{testCount}}</mat-option>
                 </mat-select>
             </mat-form-field>
-        
-            <button #saveBtn id="saveBtn" mat-raised-button color="primary" type="submit">Save</button>
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button>Edit</button>
+        <button #saveBtn id="saveBtn" mat-raised-button color="primary" type="submit">Save</button>
     </mat-card-actions>
     <div class="row"
             *ngIf="chosenTest().children">
@@ -135,5 +133,84 @@
 </mat-card>
 <!-- MNEUMONIC -->
 <mat-card *ngIf="chosenTest().type === 'MNEUMONIC' ">
-    <app-new-test />
+    <mat-card-header>{{chosenTest().name}}</mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="updateTest()">
+            <mat-form-field>
+                <mat-label>Mneumonic ID*:</mat-label>
+                <input [(ngModel)]="mneuFormData.mneu_id" name="mneu_id"  matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Name*:</mat-label>
+                <input [(ngModel)]="mneuFormData.name" name="name"  matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description*:</mat-label>
+                <input [(ngModel)]="mneuFormData.description" name="description"  matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Data Type:</mat-label>
+                <mat-select [(value)]="typeselected" placeholder="Data Type">
+                <mat-option [value]="">None</mat-option>
+                <mat-option *ngFor="let dtype of dataTypes" [value]="dtype">{{dtype}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Analyte:</mat-label>
+                <mat-select [(value)]="analyteselected" placeholder="Associated Analyte">
+                <mat-option [value]="">None</mat-option>
+                <!-- tehehee-->
+                <mat-option *ngFor="let anal of analytes" [value]="anal">{{anal}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Picklist:</mat-label>
+                <mat-select [(value)]="picklistselected" placeholder="Picklist">
+                <mat-option [value]="">None</mat-option>
+                <mat-option *ngFor="let pick of picklists" [value]="pick">{{pick}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Organism:</mat-label>
+                <input [(ngModel)]="mneuFormData.organism_mod" name="organism_mod" value="{{chosenTest().organism_mod}}" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Default Value:</mat-label>
+                <input [(ngModel)]="mneuFormData.default_val" name="default_val" value="{{chosenTest().default_val}" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Numeric Scale:</mat-label>
+                <input [(ngModel)]="mneuFormData.numeric_scale" name="numeric_scale" value="{{chosenTest().numeric_scale}" matInput>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Default Unit ID:</mat-label>
+                <input [(ngModel)]="mneuFormData.default_unit_id" name="default_unit_id" value="{{chosenTest().default_unit_id}" matInput>
+            </mat-form-field>
+            <section class="example-section">
+                <mat-checkbox name="required" [(ngModel)]="mneuFormData.required" (change)="checkCheckBoxvalue($event)" value="{{chosenTest().required}}" color='primary' class="example-margin">Required?*</mat-checkbox>
+            </section>
+            <section class="example-section">
+                <mat-checkbox name="reportable" [(ngModel)]="mneuFormData.reportable" (change)="checkCheckBoxvalue($event)" value="{{chosenTest().reportable}}" color='primary' class="example-margin">Reportable?*</mat-checkbox>
+            </section>
+            <section class="example-section">
+                <mat-checkbox name="scientific_notation" [(ngModel)]="mneuFormData.scientific_notation" (change)="checkCheckBoxvalue($event)" value="{{chosenTest().scientific_notation}}" color='primary' class="example-margin">Scientific Notation</mat-checkbox>
+            </section>
+            <section class="example-section">
+                <mat-checkbox name="value_array_size_is_variable" [(ngModel)]="mneuFormData.value_array_size_is_variable" (change)="checkCheckBoxvalue($event)" value="{{chosenTest().value_array_size_is_variable}}" color='primary' class="example-margin">Value Array Size Variable</mat-checkbox>
+            </section>
+            <section class="example-section">
+                <mat-checkbox name="use_for_counts" [(ngModel)]="mneuFormData.use_for_counts" (change)="checkCheckBoxvalue($event)" value="{{chosenTest().use_for_counts}}" color='primary' class="example-margin">Use For Counts</mat-checkbox>
+            </section>
+            <section class="example-section">
+                <mat-checkbox name="abnormal_result" [(ngModel)]="mneuFormData.abnormal_result" (change)="checkCheckBoxvalue($event)" value="{{chosenTest().abnormal_result}}" color='primary' class="example-margin">Abnormal?</mat-checkbox>
+            </section>
+            <mat-form-field>
+                <mat-label>LOINC Number:</mat-label>
+                <input type="number" [(ngModel)]="mneuFormData.default_value_array_size" matInput>
+            </mat-form-field> 
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+    </mat-card-actions>
 </mat-card>

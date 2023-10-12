@@ -1,4 +1,33 @@
-<app-icon-bar />
+<!-- NavBar  -->
+<!-- Attempt to separate components but I can't find a workaround that changes the tree state and renders it correctly
+  <app-icon-bar 
+  [deleteSelectedTest]="deleteSelectedTest" /> -->
+<div class="icon-bar">
+  <a href="#" title="Open folder"><i class="fa-solid fa-folder-open"></i></a>
+  <a href="javascript:window.location.reload(true)" title="Refresh page"><i class="fa-solid fa-arrows-rotate"></i></a> <!-- Refresh Page -->
+  <button name="delete" (click)="confirmDeleteAction()"><i class="fa-solid fa-trash-can"></i></button> <!-- Delete -->
+  <button name="cut" (click)="confirmCutAction()"><i class="fa-solid fa-scissors"></i></button> <!-- Cut -->
+  <button name="copy" (click)="copySelectedTest()"><i class="fa-regular fa-clipboard"></i></button> <!-- Copy -->
+  <a href="#" title="Undo operation"><i class="fa-solid fa-reply"></i></a> <!-- Undo -->
+  <!-- <a href="#" title="Save"><i class="fa-solid fa-floppy-disk"></i></a> Save -->
+  <button name="save"><i class="fa-solid fa-floppy-disk"></i></button> <!-- Save -->
+
+  <a href="#" title="View Test Group it belongs to"><i class="fa-solid fa-eye"></i></a> <!-- View test group that owns the test -->
+  <a href="#" title="Version selected"><i class="fa-solid fa-circle-up"></i></a> <!-- Version -->
+  <a href="/newtestgroup" title="New Test Group"><i class="fa-solid fa-flask"></i></a> <!-- Create Test Group -->
+  <a href="/newtest" title="New Test"><i class="fa-solid fa-vial"></i></a> <!-- Create Test -->
+  <a href="/newinterp" title="New Interp"><i class="fa-solid fa-hashtag"></i></a> <!-- Create Interp -->
+  <a href="/newinterppattern" title="New Interp Pattern Set"><i class="fa-solid fa-file-powerpoint"></i></a> <!-- Create Interp Pattern Set-->
+  <a href="/newcontrol" title="New Control Type"><i class="fa-solid fa-droplet"></i></a> <!-- Create Control Type -->
+  <a href="/newsupply" title="New Supply"><i class="fa-solid fa-bucket"></i></a> <!-- Create Supply -->
+  <a href="/newsupplycontrol" title="New Supply Control Type"><i class="fa-solid fa-fill-drip"></i></a> <!-- Create Supply Control Type -->
+  <a href="/newanalyte" title="New Analyte"><i class="fa-solid fa-ring"></i></a> <!-- Create Analyte -->
+  <a href="/newmethod" title="New Method"><i class="fa-solid fa-briefcase"></i></a> <!-- Create Method -->
+
+  <a href="#" title="Promote to Prod"><i class="fa-solid fa-paper-plane"></i> </a><!-- Send to prod -->
+
+  <a href="#" title="BOO"><i class="fa-solid fa-ghost"></i></a>
+</div>
 <!-- Choose LAB -->
 <div>
   <mat-form-field appearance="fill">

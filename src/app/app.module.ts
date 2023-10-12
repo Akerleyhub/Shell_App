@@ -33,10 +33,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 //import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTreeModule } from '@angular/material/tree';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { TestViewComponent } from './test-view/test-view.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({
@@ -59,7 +62,8 @@ import { TestViewComponent } from './test-view/test-view.component';
     NewSupplyComponent,
     NewSupplyControltypeComponent,
     NewMethodComponent,
-    TestViewComponent
+    TestViewComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,9 @@ import { TestViewComponent } from './test-view/test-view.component';
     MatToolbarModule,
     BrowserAnimationsModule,
     MatTreeModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

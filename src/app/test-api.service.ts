@@ -24,6 +24,7 @@ export class TestAPIService {
   tests: WritableSignal<any> = signal([]);  // The logged-in user 
   test: WritableSignal<any> = signal(undefined);  // single test
   error: WritableSignal<any> = signal(undefined); // An error message
+  //tree: WritableSignal<any> = signal(undefined); // Tree structure so we can update the tree outside test component
   constructor(private _http: HttpClient) { }
 
   // GET OPERATIONS
@@ -39,7 +40,7 @@ export class TestAPIService {
   }
   getTestFake(){
     //console.log(test_id);
-    this.test.set(this.selectedTest)
+    this.test.set(this.selected)
   }
   getTest(test:string){
     this._http.get('/api/getTest')
@@ -86,9 +87,10 @@ export class TestAPIService {
     //this.tests.update(vals=>vals.data.filter((obj) => obj.test_id !== data.test_id));
   }
   
-  selectedTest = signal<Test | undefined>(undefined);
-  
-  // private vehicleFilms$ = toObservable(this.selectedTest).pipe(
+  //selectedTest = signal<Test | undefined>(undefined); can set it to specific type this way
+  selected = signal(undefined);
+
+  // private vehicleFilms$ = toObservable(this.selected).pipe(
   //   filter(Boolean),
   //   switchMap(test =>
   //     forkJoin(test.testid.map(id =>
@@ -97,7 +99,7 @@ export class TestAPIService {
   // );
   testSelected(testName: string) {
     const foundTest = this.tests().find((t:any) => t.name === testName);
-    this.selectedTest.set(foundTest);
+    this.selected.set(foundTest);
   }
 }
 

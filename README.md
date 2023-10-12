@@ -1,4 +1,6 @@
-# Shell
+# Shell App
+
+Goal of this project is to help me learn Angular as well as to apply my newly learned knowledge to a project. That might possibly be used by the department of health one day. With the use of Angular Signals believe this project will last many years to come and maybe will live on the cloud one day.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
 
