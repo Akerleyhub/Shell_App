@@ -35,6 +35,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
 //import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTreeModule } from '@angular/material/tree';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -81,7 +82,8 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     MatTreeModule,
     MatCheckboxModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

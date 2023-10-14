@@ -78,3 +78,10 @@
 .active {
     background-color: #8c04aa; /* Add an active/current color */
 }
+
+/* mat-grid-list .mat-grid-tile.custom-tile {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: left !important;
+} */

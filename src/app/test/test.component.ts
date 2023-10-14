@@ -65,6 +65,9 @@ export class TestComponent {
     private _snackBar: MatSnackBar,
     private confirmationDialogService: ConfirmationDialogService
   ) {
+    // effect(() => {
+    //   console.log(this.tests(), "changed");
+    // });
     this._testService.getAllTestsFake();
     this.currLab= localStorage.getItem('selectedLab');
     //console.log(this.tests().data); 
@@ -250,18 +253,48 @@ export class TestComponent {
     this.foundTest = this.tests().data.filter(test => test.name.toLowerCase().includes(text.toLowerCase()));
     this.foundTest = this.foundTest.map((x) => x.name );
   }
-  sortTests(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    let by = target.value;
-    console.log(by)
-    let sorted= [];
+  // Do this or not?
+  // expandNode(depth:number) {
+  //   this.treeControl.expand(this.treeControl.dataNodes[4]);
+  //   this.treeControl.expand(this.treeControl.dataNodes[5]);
+  // }
+  // // Search for a specific test by name
+  // searchAll(text: string) {
+  //   this.foundTest = this.tests().data.filter(test => test.name.toLowerCase().includes(text.toLowerCase()));
+  //   this.foundTest = this.foundTest.map((x) => x.name );
+  //   const recur=(target,searchArr)=>{
+  //     // Array is always passes in and we will check every object in this array to confirm 
+  //     // or deny if the target value is in.
+  //     for(let lookFor of searchArr){
+  //       if(target == lookFor.name){
+  //         this.foundTest = lookFor;
+  //         return
+  //       }
+  //       if(lookFor.children) recur(target,lookFor.children);
+  //     }
+  //   }
+  // }
+  sortTests(by:number): void {
+    //by is coming in as the number in the sort dropdown
+    let sortBy:string = this.sortBys[by-1].description;
+    let sorted;
     // Either Alphabet, DateCreated
-    if(by === 'DATE'){
-      sorted = this.tests().data.sort((a,b)=> a.date_made - b.date_made);
-      this.tests.set(sorted);
-    }else if(by === 'ALPHABET'){
-      sorted = this.tests().data.sort((a,b)=> a.name - b.name);
-      this.tests.set(sorted);
+    if(sortBy === 'DATE'){
+      //sorted = this.tests().data.sort((a,b)=> a.entry_datetime - b.entry_datetime);
+      sorted =this.tests().data.sort(function(a,b) {
+        a = a.entry_datetime.split('/').reverse().join('');
+        b = b.entry_datetime.split('/').reverse().join('');
+        return a > b ? 1 : a < b ? -1 : 0;
+        // return a.localeCompare(b);         // <-- alternative 
+      });
+      this.tests.set({"data":sorted});
+    }else if(sortBy === 'ALPHABET'){
+      // Special sort needed for string within an object for some reason
+      sorted = this.tests().data.sort((a, b) => a.name < b.name ? -1 : (a.name > b.name ? 1 : 0));
+      console.log(sorted)
+      this.tests.set({"data":sorted});
     }
+    // Now set the tree so it updates with the new state value order
+    this.dataSource.data = this.tests().data;
   }
 }
