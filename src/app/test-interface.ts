@@ -28,7 +28,7 @@ export interface Test {
     test_id: string;
     name: string;
     description: string;
-    type: string; //This was defined by me
+    type: string; //This was defined by me, can prob find this out from the DB
     status?: string;
     replicate?: string;
     replica_cost?:string;
@@ -69,7 +69,8 @@ export interface Mneumonic {
 export interface TestNode {
     name: string;
     testid?:string;
-    mneumonic?:string;
+    //mneumonic?:string;
+    status:string;
     children?: TestNode[];
 }
 /** Flat node with expandable and level information */
@@ -77,4 +78,5 @@ export interface ExampleFlatNode {
     expandable: boolean;
     name: string;
     level: number;
+    status:string;
 }

@@ -11,26 +11,6 @@ import {
 
 
 // Note:There can be tests within a test
-// const TREE_DATA: TestNode[] = [
-//   {
-//     name: 'Whole genome sequencing',
-//     children: [{ name: 'WGS' }, { name: 'NGS' }, { name: 'TNGS' }],
-//   },
-//   {
-//     name: 'Cryptosporidium',
-//     children: [
-//       {
-//         name: 'Test within a test',
-//         children: [{ name: 'Mneumonic1' }, { name: 'Mneumonic2' }],
-//       },
-//       {
-//         name: 'Another Test within test',
-//         children: [{ name: 'Pumpkin spice' }, { name: 'Carrots' }],
-//       },
-//     ],
-//   },
-// ];
-
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -42,6 +22,7 @@ export class TestComponent {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
       level: level,
+      status:node.status,
     };
   };
   
@@ -72,6 +53,7 @@ export class TestComponent {
     this.currLab= localStorage.getItem('selectedLab');
     //console.log(this.tests().data); 
     //So friggin awesome, setting the node data to what the test API returns
+    console.log(this.tests().data)
     this.dataSource.data = this.tests().data;
     //this.dataSource.data = TREE_DATA; //replace with an API call to get all formatted json
   }

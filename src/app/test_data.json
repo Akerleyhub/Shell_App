@@ -23,6 +23,7 @@
             "name": "Cryptosporidium",
             "test_id":"CRYPT",
             "description":"Cryptosporidium",
+            "status":"MIGRATED",
             "type":"TEST",
             "entry_datetime":"10/05/2023 00:00:00",
             "children": [
@@ -43,6 +44,7 @@
             "test_id":"HERP",
             "description":"Herpies panal",
             "type":"TEST",
+            "status":"MIGRATED",
             "entry_datetime":"10/10/2003 00:00:00",
             "children": [
                 {
@@ -60,6 +62,7 @@
             "test_id":"PROBE",
             "description":"Probe",
             "type":"TEST",
+            "status":"MIGRATED",
             "entry_datetime":"10/12/2023 12:00:00",
             "children": [{ "name": "PROBE1", "type":"MNEUMONIC"}, { "name": "PROBE2", "type":"MNEUMONIC" }, { "name": "PROBE3", "type":"MNEUMONIC" }]
         },
@@ -68,6 +71,7 @@
             "test_id":"SPONGE",
             "description":"Spongecofficus",
             "type":"TEST",
+            "status":"READY",
             "entry_datetime":"05/05/2015 00:00:00",
             "children": [{ "name": "SPONG_FORAL", "type":"MNEUMONIC" }, { "name": "LLORIUM", "type":"MNEUMONIC" }, { "name": "PESI", "type":"MNEUMONIC" },{ "name": "DOPA", "type":"MNEUMONIC" },{ "name": "CAFFI", "type":"MNEUMONIC" }]
         }

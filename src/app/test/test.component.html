@@ -62,8 +62,8 @@
                 </label>
             <button class="btn" (click)="moveUp()"><i class="fa-solid fa-up-long icon"></i></button> 
             <button class="btn" (click)="moveDown()"><i class="fa-solid fa-down-long icon"></i></button>
-            <button class="btn"><i class="fa-solid fa-pen-to-square icon"></i></button>
-            <button name="delete" (click)="deleteSelectedTest()"><i class="fa-solid fa-trash-can"></i></button>
+            <!-- <button class="btn"><i class="fa-solid fa-pen-to-square icon"></i></button> -->
+            <!-- <button name="delete" (click)="deleteSelectedTest()"><i class="fa-solid fa-trash-can"></i></button> -->
         </mat-tree-node>
         <!-- This is the tree node template for expandable nodes -->
         <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
@@ -75,10 +75,37 @@
           </button>
           <label class="labl">
             <input type="radio" name="radioname" value="one_value" />
+            <!-- WARNING: confusing. So there's if elses checking that status, then within each of those there's an ifelse checking the search -->
             <!-- <div (click)="testSelected(node.name)" *ngIf="foundTest === node.name">{{node.name}} </div> -->
-            <div *ngIf="foundTest.includes(node.name);then content else other_content">Here is ignored</div>
+            <ng-container *ngIf="node.status === 'MIGRATED';else second">
+                <div *ngIf="foundTest.includes(node.name);then content else other_content">Here is ignored</div>
+                  <ng-template #content><div (click)="testSelected(node.name)"><span style="background-color: #FFFF00">{{node.name}}</span></div></ng-template>
+                  <ng-template #other_content><div (click)="testSelected(node.name)">{{node.name}}</div></ng-template>
+            </ng-container>
+            <ng-template #second>
+                <ng-container *ngIf="node.status === 'PENDING';else third">
+                  <div *ngIf="foundTest.includes(node.name);then content else other_content">Here is ignored</div>
+                    <ng-template #content><div (click)="testSelected(node.name)"><span style="background-color: #FFFF00">{{node.name}}</span></div></ng-template>
+                    <ng-template #other_content><div style="color:orange" (click)="testSelected(node.name)">{{node.name}}</div></ng-template>
+                </ng-container>
+            </ng-template>
+            <ng-template #third>
+              <ng-container *ngIf="node.status === 'READY';else fourth">
+                <div *ngIf="foundTest.includes(node.name);then content else other_content">Here is ignored</div>
+                    <ng-template #content><div (click)="testSelected(node.name)"><span style="background-color: #FFFF00">{{node.name}}</span></div></ng-template>
+                    <ng-template #other_content><div style="color:blue" (click)="testSelected(node.name)">{{node.name}}</div></ng-template>
+              </ng-container>
+            </ng-template>
+            <ng-template #fourth>
+              <ng-container *ngIf="node.status === 'FINAL' ">
+                <div *ngIf="foundTest.includes(node.name);then content else other_content">Here is ignored</div>
+                    <ng-template #content><div (click)="testSelected(node.name)"><span style="background-color: #FFFF00">{{node.name}}</span></div></ng-template>
+                    <ng-template #other_content><div style="color:yellowgreen" (click)="testSelected(node.name)">{{node.name}}</div></ng-template>
+              </ng-container>
+            </ng-template>
+            <!-- <div *ngIf="foundTest.includes(node.name);then content else other_content">Here is ignored</div>
             <ng-template #content><div (click)="testSelected(node.name)"><span style="background-color: #FFFF00">{{node.name}}</span></div></ng-template>
-            <ng-template #other_content><div (click)="testSelected(node.name)">{{node.name}}</div></ng-template>
+            <ng-template #other_content><div (click)="testSelected(node.name)">{{node.name}}</div></ng-template> -->
           </label>
         </mat-tree-node>
     </mat-tree>
